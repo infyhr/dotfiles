@@ -1,0 +1,15 @@
+BoldAsFont=no
+Transparency=off
+OpaqueWhenFocused=yes
+CursorType=block
+CursorBlinks=no
+Font=Lucida Console
+FontHeight=10
+AllowBlinking=yes
+FontSmoothing=full
+Columns=83
+Rows=27
+Scrollbar=none
+BellSound=no
+Locale=hr_HR
+Charset=UTF-8

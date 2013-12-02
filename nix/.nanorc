@@ -1,0 +1,13 @@
+# Rebind ^W to ^F
+bind ^F whereis main
+
+# set/unset
+set autoindent
+unset backup
+#unset backupdir /media/DATA/nano_backups
+unset casesensitive
+set const
+set tabsize 4
+set tabstospaces
+set undo
+unset historylog
