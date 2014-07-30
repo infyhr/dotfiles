@@ -1,9 +1,54 @@
-background no
-out_to_console yes
 out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
 update_interval 60
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
 total_run_times 0
-use_spacer none
- 
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address.
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+#use_spacer ri
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+double_buffer yes
+
+# Stuff after 'TEXT' will be formatted on screen
 TEXT
-^fg(\#CCCCCC)^i(/home/infy/dzen2/note.xbm) ^fg(\#CCCCCC)${exec cmus-remote -Q 2>/dev/null | grep artist | cut -d " " -f 3- | sed '$d'} - ${exec cmus-remote -Q 2>/dev/null | grep title | cut -d " " -f 3-}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/mail.xbm) ^fg(\#00FF00)${execi 1200 python /home/infy/Projects/check_email_gmail.py} ^fg(\#CCCCCC)| ^fg(\#00FFFF)${execi 1200 python /home/infy/Projects/check_email_skole.py}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/wifi_02.xbm) ^fg(\#1793D0)${wireless_link_qual_perc ra0}% / ${exec sh /home/infy/ping.sh}ms   ^fg(\#CCCCCC)^i(/home/infy/dzen2/mem.xbm) ^fg(\#1793D0)${mem} / ^fg(\#1793D0)${memmax}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/net_down_03.xbm) ^fg(\#1793D0)${totaldown ra0}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/net_up_03.xbm) ^fg(\#1793D0)${totalup ra0}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/temp.xbm) ^fg(\#F88017)${execi 1200 curl --silent "http://weather.yahooapis.com/forecastrss?w=850357&u=c" | grep -ow 'temp="[0-9][0-9]"' | cut -c7-8}°C ^fg(\#1793D0)${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec sensors | grep -n 'temp1' | sed -n 1p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec sensors | grep -n 'temp1' | sed -n 3p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec nc localhost 7634 | cut -c33-34}°C   ^fg(\#FF0000)${loadavg 1 2 3}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/clock.xbm) ${time %d.%m.%y - %H:%M}
+
+# JSON for i3bar
+#{"full_text": "RAM ${memperc}%", "color":${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} }
+[
+	{"full_text": "${execi 60 /home/infy/.i3/nowplaying.sh}", "short_text": "♩ ♪ ♫", "color":"\#bdc3c7", "separator_block_width": 15, "icon": "/home/infy/dzen2/note.xbm"},
+#	{"full_text": "${execi 1 /home/infy/.i3/i3py.py}", "short_text": "!", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/clock.xbm"},
+	{"full_text": "${execi 1200 /home/infy/.i3/check_email_skole.py}, ${execi 1210 /home/infy/.i3/check_email_gmail.py}", "color":"\#2ecc71", "separator_block_width": 15, "icon": "/home/infy/dzen2/mail.xbm"},
+#	{"full_text": "W: ${wireless_link_qual_perc wlp0s18f2u2}%", "color":${if_match ${wireless_link_qual_perc}<70}"\#c0392b"${else}"\#27ae60"${endif}, "separator_block_width": 15, "short_text": "${wireless_link_qual_perc wlp0s18f2u2}%"},
+    {"full_text": "${execi 10800 curl ifconfig.me/ip}", "color":"\#c0392b", "icon": "/home/infy/dzen2/net_wired.xbm"},
+	{"full_text": "${execi 1200 /home/infy/.i3/conky_weather.sh}°C", "color":"\#f88017", "separator_block_width": 15, "icon": "/home/infy/dzen2/temp.xbm"},
+	{"full_text": "${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}", "color":"\#2c3e50", "separator_block_width": 15, "icon": "/home/infy/dzen2/cpu.xbm"},
+	{"full_text": "${mem} of ${memmax}", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/mem.xbm"},
+	{"full_text": "${hddtemp}°C", "color":"\#2980b9", "separator_block_width": 15, "icon": "/home/infy/dzen2/diskette.xbm"},
+	{"full_text": "${execi 120 aticonfig --odgt | tail -n 1 | awk '{print $5}'}°C", "color":"\#16a085", "separator_block_width": 15, "icon": "/home/infy/dzen2/fs_02.xbm"},
+	{"full_text": "${loadavg 1 2}", "color":"\#7f8c8d", "separator_block_width": 15, "icon": "/home/infy/dzen2/info_03.xbm"},
+	{"full_text": "${time %d.%m.%y - %H:%M}", "color":"\#ffffff", "icon": "/home/infy/dzen2/clock.xbm"}
+],

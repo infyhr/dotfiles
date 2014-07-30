@@ -1,0 +1,11 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 5
+total_run_times 0
+use_spacer none
+default_color FFFFFF
+short_units yes
+
+TEXT
+♪ ${execi 60 /home/infy/nowplaying.sh} | W: ${wireless_link_qual_perc wlp0s18f2u2}% @ ${wireless_essid wlp0s18f2u2} | ${mem} of ${memmax} | Traffic: ${totaldown wlp0s18f2u2}/${totalup wlp0s18f2u2} ${color #F88017} ${execi 1200 curl --silent "http://weather.yahooapis.com/forecastrss?w=850357&u=c" | grep -ow 'temp="[0-9][0-9]"' | cut -c7-8}°C | ${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}${color}${exec sensors | grep -n 'temp1' | sed -n 1p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec sensors | grep -n 'temp1' | sed -n 3p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec nc localhost 7634 | cut -c33-34}°C   ${loadavg 1 2 3} ${time %d.%m.%y - %H:%M}

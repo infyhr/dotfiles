@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-Own dotfiles, figure.
+My own dotfiles. I use Arch.

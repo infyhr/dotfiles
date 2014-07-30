@@ -1,0 +1,9 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 60
+total_run_times 0
+use_spacer none
+ 
+TEXT
+^i(/home/infy/dzen2/note.xbm) ^fg(\#CCCCCC)${exec exaile --get-artist} - ${exec exaile --get-title}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/wifi_02.xbm) ^fg(\#1793D0)${wireless_link_qual_perc ra0}%   ^fg(\#CCCCCC)^i(/home/infy/dzen2/mem.xbm) ^fg(\#1793D0)${mem} / ^fg(\#1793D0)${memmax}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/net_down_03.xbm) ^fg(\#1793D0)${totaldown ra0}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/net_up_03.xbm) ^fg(\#1793D0)${totalup ra0}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/temp.xbm) ^fg(\#F88017)${execi 1200 curl --silent "http://weather.yahooapis.com/forecastrss?w=850357&u=c" | grep -ow 'temp="[0-9][0-9]"' | cut -c7-8}°C ^fg(\#1793D0)${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec sensors | grep -n 'temp1' | sed -n 1p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec sensors | grep -n 'temp1' | sed -n 3p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'} ${exec nc localhost 7634 | cut -c33-34}°C   ^fg(\#FF0000)${loadavg 1 2 3}   ^fg(\#CCCCCC)^i(/home/infy/dzen2/clock.xbm) ${time %d.%m.%y - %H:%M}
