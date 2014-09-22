@@ -16,12 +16,13 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
+#font pango:Uushi 9
 
 font -misc-fixed-medium-r-*--12-110-75-75-c-60-iso10646-1
 
@@ -104,16 +105,17 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Workspace names
-workspace "1:www" output CRT2
-workspace "2:dev" output CRT2
-workspace "3:term" output CRT2
-workspace "4:etc" output CRT2
+# workspace "1: www" output CRT2
+workspace "1" output CRT2
+workspace "2" output CRT2
+workspace "3" output CRT2
+workspace "4" output CRT2
 
 # switch to workspace
-bindsym $mod+1 workspace 1:www
-bindsym $mod+2 workspace 2:dev
-bindsym $mod+3 workspace 3:term
-bindsym $mod+4 workspace 4:etc
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -122,10 +124,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:www
-bindsym $mod+Shift+2 move container to workspace 2:dev
-bindsym $mod+Shift+3 move container to workspace 3:term
-bindsym $mod+Shift+4 move container to workspace 4:etc
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -142,7 +144,10 @@ bindsym $mod+period workspace next
 workspace_layout tabbed
 
 # Customs
-assign [class="Nightly"] 1:www
+assign [class="Nightly"] 1
+
+    # screenie
+    bindsym Control+0 exec 'python2 /home/infy/screenie.py > /dev/null 2>&1'
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -194,7 +199,8 @@ bar {
 	tray_output CRT2
 	mode dock
 	position bottom
-	#font pango:uushi 12px
+	#font pango:Uushi 9px
+    #font -misc-fixed-medium-r-*--12-110-75-75-c-60-iso10646-1
 	output CRT2
 	colors {
 		background #000000
@@ -211,6 +217,9 @@ exec --no-startup-id nitrogen --restore
 
 # redshift as an alternative to f.lux.
 exec --no-startup-id redshift-gtk &
+
+# skype
+exec skype &
 
 # Set keyboard repeat rrrrrrate
 exec xset r rate 250 35
