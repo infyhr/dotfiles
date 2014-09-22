@@ -31,7 +31,7 @@ font -misc-fixed-medium-r-*--12-110-75-75-c-60-iso10646-1
 client.focused                  #34bf5c #34bf5c #FFFFFF
 client.focused_inactive         #333333 #333333 #999999
 client.unfocused                #333333 #333333 #999999
-client.urgent                   #FF0000 #8C5665 #FF0000
+client.urgent                   #FF0000 #8C5665 #FFFFFF
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
