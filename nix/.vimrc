@@ -1,4 +1,7 @@
-" Run pathogen
+" gVim my way -- 1.0
+" Required plugins: 
+
+" Run pathogen first?
 execute pathogen#infect()
 call pathogen#helptags()
 
@@ -62,11 +65,11 @@ highlight StatusLine ctermfg=black ctermbg=white
 " No wrapping for me, not a fan.
 set nowrap
 
-" $ nano, use Control+X to exit
-map <C-X> <Esc>:wq<CR>
-imap <C-X> <Esc>:wq<CR>
-map <C-X><C-X> <Esc>:q!<CR>
-imap <C-X><C-X> <Esc>:q!<CR>
+" Nano stuff -- commented, testing
+"map <C-X> <Esc>:wq<CR>
+"imap <C-X> <Esc>:wq<CR>
+"map <C-X><C-X> <Esc>:q!<CR>
+"imap <C-X><C-X> <Esc>:q!<CR>
 
 " Backspace should delete four (4) characters since it's the length of a TAB char (which are spaces)
 set softtabstop=4
@@ -81,10 +84,13 @@ map  <C-Right> <Esc>:tabn<CR><Esc>i
 imap  <C-Right> <Esc>:tabn<CR><Esc>i
 
 imap <C-t> <Esc>:tabnew<CR><Esc>i
+nmap <C-t> :tabnew<CR><Esc>i
 imap <C-w> <Esc>:tabclose<CR><Esc>i
+nmap <C-t> :tabclose<CR>
 
 " I use solarized for my color scheme.
-set background=dark
+set background=light
+let g:solarized_termcolors=256 "This makes sure it works in a terminal.
 colorscheme solarized
 
 " I dislike the sound of bells so I disabled them.
@@ -258,8 +264,15 @@ endfunction
 
 map <silent><C-S-Right> :execute TabRight()<CR>
 map <silent><C-S-L> :execute TabRight()<CR>
-map <silent><C-S-Left> :execute TabLeft()<CR> 
+map <silent><C-S-Left> :execute TabLeft()<CR>
 map <silent><C-S-H> :execute TabLeft()<CR>
+
+" Use d and u to move half page down and half page up. This is because vimfx does it.
+nmap d <C-D>
+nmap u <C-U>
+
+" Map cw to change inner word. I tend to mix these up quite often.
+nmap cw ciw
 
 " Disable autocomments.
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=oi
