@@ -43,7 +43,7 @@ TEXT
 #	{"full_text": "${execi 1 /home/infy/.i3/i3py.py}", "short_text": "!", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/clock.xbm"},
 	{"full_text": "${execi 1200 /home/infy/.i3/check_email_skole.py}, ${execi 1210 /home/infy/.i3/check_email_gmail.py}", "color":"\#2ecc71", "separator_block_width": 15, "icon": "/home/infy/dzen2/mail.xbm"},
 #	{"full_text": "W: ${wireless_link_qual_perc wlp0s18f2u2}%", "color":${if_match ${wireless_link_qual_perc}<70}"\#c0392b"${else}"\#27ae60"${endif}, "separator_block_width": 15, "short_text": "${wireless_link_qual_perc wlp0s18f2u2}%"},
-    {"full_text": "${execi 10800 curl ifconfig.me/ip}", "color":"\#c0392b", "icon": "/home/infy/dzen2/net_wired.xbm"},
+    {"full_text": "${execi 10800 curl infy.cybershade.org/ip.php}", "color":"\#c0392b", "icon": "/home/infy/dzen2/net_wired.xbm"},
 	{"full_text": "${execi 1200 /home/infy/.i3/conky_weather.sh}°C", "color":"\#f88017", "separator_block_width": 15, "icon": "/home/infy/dzen2/temp.xbm"},
 	{"full_text": "${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}", "color":"\#2c3e50", "separator_block_width": 15, "icon": "/home/infy/dzen2/cpu.xbm"},
 	{"full_text": "${mem} of ${memmax}", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/mem.xbm"},
