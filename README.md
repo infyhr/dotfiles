@@ -8,4 +8,4 @@ In the Unix folder you can find my bash config, i3, some dzen/conky stuff and th
 
 ### screenshot
 as of 30.10.2014, mailbug present in i3bar-icons+conky low quality jpeg:
-![this is how it looks no](http://raw.githubusercontent.com/infyhr/dotfiles/master/nix/screenshot.jpg ".")
+![this is how it looks no](https://raw.githubusercontent.com/infyhr/dotfiles/master/nix/screenshot.jpg ".")
