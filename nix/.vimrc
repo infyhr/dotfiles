@@ -88,10 +88,10 @@ nmap <C-t> :tabnew<CR><Esc>i
 imap <C-w> <Esc>:tabclose<CR><Esc>i
 nmap <C-t> :tabclose<CR>
 
-" I use solarized for my color scheme.
+" I use jellybeans for my color scheme.
 set background=light
-let g:solarized_termcolors=256 "This makes sure it works in a terminal.
-colorscheme solarized
+"let g:solarized_termcolors=256 "This makes sure it works in a terminal.
+colorscheme jellybeans
 
 " I dislike the sound of bells so I disabled them.
 set noerrorbells visualbell t_vb=
@@ -226,7 +226,8 @@ cnoreabbrev <expr> tm ((getcmdtype() is# ':' && getcmdline() is# 'tm')?('Tabmerg
 
 " This fixes some cursor flickering that might occur.
 set guicursor=a:block-Cursor
-set guicursor+=i:blinkon0
+"set guicursor+=i:blinkon0
+set guicursor+=i:ver20-Cursor
 
 " Smart HOME key -- when HOME is pressed, go to the first occurance of a character and not to the beginning of the line.
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
@@ -234,6 +235,7 @@ imap <silent> <Home> <C-O><Home>
 
 " Remove the gVim toolbar.
 set guioptions-=T
+set guioptions-=m
 "set guioptions-=r " remove right-hand scroll bar, only if you're hardcore I guess lol
 
 " No need for backups.
@@ -266,10 +268,6 @@ map <silent><C-S-Right> :execute TabRight()<CR>
 map <silent><C-S-L> :execute TabRight()<CR>
 map <silent><C-S-Left> :execute TabLeft()<CR>
 map <silent><C-S-H> :execute TabLeft()<CR>
-
-" Use d and u to move half page down and half page up. This is because vimfx does it.
-nmap d <C-D>
-nmap u <C-U>
 
 " Map cw to change inner word. I tend to mix these up quite often.
 nmap cw ciw
