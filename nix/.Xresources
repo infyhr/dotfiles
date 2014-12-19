@@ -17,8 +17,15 @@ URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
 URxvt*.shading: 20
 
-urxvt*font: xft:Bitstream Vera Sans Mono:size=10
-urxvt.font: xft:Bitstream Vera Sans Mono:size=10
+!URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!urxvt*font: xft:Bitstream Vera Sans Mono:size=10
+!URxvt*font: xft:termsyn:pixelsize=11
+URxvt*font: -*-termsyn-medium-*-normal-*-12-*-*-*-*-*-*-*
+!URxvt.letterspace: -5
+!URxvt.linespace: -1
+
+!URxvt*font: xft:Tewi:size=12
+URxvt*depth: 32
 urxvt.scrollBar:        false
 urxvt.perl-lib:         /usr/lib/urxvt/perl/
 urxvt.perl-ext-common:  default,matcher
@@ -31,6 +38,7 @@ urxvt.matcher.button:   1
 URxvt.meta8: False
 URxvt*meta8: False
 
+! Color style #1
 *color0:  #2E3436
 *color1:  #a40000
 *color2:  #4E9A06

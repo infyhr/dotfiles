@@ -45,7 +45,9 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec dmenu_run -b -i -nb "#000" -nf "#34bf5c" -sb "#FFF" -sf "#000" -fn "-*-fixed-*-*-*-*-15-*-*-*-*-*-iso10646-1"
+#bindsym $mod+d exec dmenu_run -b -i -nb "#000" -nf "#34bf5c" -sb "#FFF" -sf "#000" -fn "-*-fixed-*-*-*-*-15-*-*-*-*-*-iso10646-1"
+# Better font:
+bindsym $mod+d exec dmenu_run -b -i -nb "#000" -nf "#34bf5c" -sb "#FFF" -sf "#000" -fn "-*-termsyn-medium-*-normal-*-12-*-*-*-*-*-*-*"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
