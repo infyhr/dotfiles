@@ -15,7 +15,7 @@ URxvt.colorUL: #4682B4
 
 URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*.shading: 20
+URxvt*.shading: 10
 
 !URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !urxvt*font: xft:Bitstream Vera Sans Mono:size=10
