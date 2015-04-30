@@ -1,4 +1,8 @@
-" VIM config 2.0
+" vim:fdm=marker
+" VIM config 2.0 -- 30.04.2015
+" from: https://www.github.com/infyhr/dotfiles
+
+" Core {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -9,13 +13,19 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'bling/vim-airline'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tomtom/tcomment_vim' " For quickly commenting and uncommenting lines of text
+Plugin 'kien/ctrlp.vim' " No need to say anything about this one
+Plugin 'scrooloose/nerdtree' " File tree
+Plugin 'ervandew/supertab' " TAB completion
+Plugin 'bling/vim-airline' " Just eyecandy
+Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
+Plugin 'jistr/vim-nerdtree-tabs' " 'Add-on' for NerdTree
+Plugin 'scrooloose/syntastic' " Syntax checker and linter
+Plugin 'tpope/vim-surround' " For more fluent content editing
+Plugin 'tacahiroy/ctrlp-funky' " Some additions to the ctrlp
+Plugin 'SirVer/ultisnips' " Snippet engine
+Plugin 'honza/vim-snippets' " Snippets generated for the engine
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -26,6 +36,12 @@ filetype plugin indent on    " required
 " Behave mswin for me
 source $VIMRUNTIME/mswin.vim
 behave mswin
+" }}}
+
+" General settings (selection, indendation, personalization) {{{
+
+" So we can select stuff with keys
+set selectmode=
 
 " Allow backspace to do several things.
 set backspace=indent,eol,start
@@ -65,7 +81,31 @@ set scs
 " Allow syntax highlighting
 syntax on
 
-" Status line configuration is below:
+" No wrapping for me, not a fan.
+set nowrap
+
+" Backspace should delete four (4) characters since it's the length of a TAB char (which are spaces)
+set softtabstop=4
+
+" Disable autocomments.
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=oi
+
+" No swap.
+set noswapfile
+
+" ff=unix
+set ff=unix
+
+" No need for backups.
+set nobk
+
+" Save as UTF-8 and remove anything that has to do with BOM.
+set nobomb
+set fileencoding=utf-8
+set encoding=utf-8
+" }}}
+
+" Status line configuration {{{
 set laststatus=2
 set statusline=%F%m%r%h%w\ [%l/%L]\ %<[%{&ff}]\%h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\\"}%k\ %-14.(%l,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 
@@ -73,54 +113,17 @@ set statusline=%F%m%r%h%w\ [%l/%L]\ %<[%{&ff}]\%h%m%r%=%{\"[\".(&fenc==\"\"?&enc
 highlight Comment ctermfg=black
 highlight StatusLine ctermfg=black ctermbg=white
 
-" No wrapping for me, not a fan.
-set nowrap
+" Make it so we can change the color of the status line depending on the mode we are in.
+au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
+au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+" }}}
 
-" Backspace should delete four (4) characters since it's the length of a TAB char (which are spaces)
-set softtabstop=4
-
+" Tabs {{{
 " Use CTRL+T to spawn new tab and CTRL+W to destroy. Also movement.
 nmap <C-t> <Esc>:tabnew<CR><Esc>
 nmap <C-w> <Esc>:tabclose<CR><Esc>
 nmap <C-Left> <Esc>:tabp<CR><Esc>
 nmap <C-Right> <Esc>:tabn<CR><Esc>
-
-" Set the color scheme
-set background=light
-colorscheme jellybeans
-
-" I don't like the sound of bells, so I disabled them.
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-" Use TAB to indent lines.
-vnoremap <Tab> >
-
-" Bind F3 to open and close NerdTree.
-autocmd VimEnter * nmap <F3> :NERDTreeTabsToggle<CR>
-autocmd VimEnter * imap <F3> <Esc>:NERDTreeTabsToggle<CR>a
-let NERDTreeQuitOnOpen=1
-let NERDTreeWinSize=35
-
-" Save as UTF-8 and remove anything that has to do with BOM.
-set nobomb
-set fileencoding=utf-8
-set encoding=utf-8
-
-" This fixes some cursor flickering that might occur.
-set guicursor=a:block-Cursor
-"set guicursor+=i:blinkon0
-set guicursor+=i:ver20-Cursor
-
-" Smart HOME key -- when HOME is pressed, go to the first occurance of a character and not to the beginning of the line.
-noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
-imap <silent> <Home> <C-O><Home>
-
-" No need for backups.
-set nobk
-
-" Use F9 to toggle between visible whitespace
-nnoremap <F9> :set list!<CR>
 
 " Move tabs right and left.
 function TabLeft()
@@ -144,25 +147,75 @@ endfunction
 
 nmap <silent><C-S-Right> :execute TabRight()<CR>
 nmap <silent><C-S-Left> :execute TabLeft()<CR>
+" }}}
+
+" Color scheme {{{
+set background=light
+colorscheme jellybeans
+" }}}
+
+" Misc {{{
+" I don't like the sound of bells, so I disabled them.
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+" }}}
+
+" Custom keybindings {{{
+" Use TAB to indent lines and to unindent
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+
+" This fixes some cursor flickering that might occur.
+set guicursor=a:block-Cursor
+"set guicursor+=i:blinkon0
+set guicursor+=i:ver20-Cursor
+
+" Smart HOME key -- when HOME is pressed, go to the first occurance of a character and not to the beginning of the line.
+noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+imap <silent> <Home> <C-O><Home>
+
+" Use F9 to toggle between visible whitespace
+nnoremap <F9> :set list!<CR>
 
 " Map cw to change inner word. I tend to mix these up quite often.
 nmap cw ciw
 
-" Disable autocomments.
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=oi
+" This makes sure when I'm searching that it searches in the middle of the screen so I don't have to bounce around with my eyes.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
-" No swap.
-set noswapfile
-
-" ff=unix
-set ff=unix
-
-" Make it so we can change the color of the status line depending on the mode we are in.
-au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
-au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+" Fix indendation with after the select has been moved from key and mousemode!
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+vnoremap < <gv
+vnoremap > >gv
 
 " Use Control+K to remove a line.
 imap <C-k> <Esc>dd<CR><Esc>i
+" }}}
 
+" Plugin specific configuration {{{
 " CTRL-P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0 " Disable the window
+let g:syntastic_auto_loc_list = 0 " This also disables the syntax checking window
+let g:syntastic_check_on_open = 0 " Disable error checking on open
+let g:syntastic_check_on_wq = 1 " This checks for errors on any write
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+" ctrlp-funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+" Bind F3 to open and close NerdTree.
+autocmd VimEnter * nmap <F3> :NERDTreeTabsToggle<CR>
+autocmd VimEnter * imap <F3> <Esc>:NERDTreeTabsToggle<CR>a
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=35
+" }}}
