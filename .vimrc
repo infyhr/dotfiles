@@ -25,6 +25,7 @@ Plugin 'tpope/vim-surround' " For more fluent content editing
 Plugin 'tacahiroy/ctrlp-funky' " Some additions to the ctrlp
 Plugin 'SirVer/ultisnips' " Snippet engine
 Plugin 'honza/vim-snippets' " Snippets generated for the engine
+Plugin 'henrik/vim-indexed-search' " Makes search results more useful
 
 
 " All of your Plugins must be added before the following line
