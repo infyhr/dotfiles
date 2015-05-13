@@ -1,7 +1,7 @@
 dotfiles
 ========
-My own dotfiles. I use [**Arch Linux**](https://archlinux.org) (Manjaro, to be precise):
-* Linux A780LM-M 3.10.56-1-MANJARO #1 SMP Mon Oct 6 03:08:30 UTC 2014 x86_64 GNU/Linux
+My own dotfiles. I use [**Arch Linux**](https://archlinux.org)
+* Linux storm 4.0.1-1-ARCH #1 SMP PREEMPT Wed Apr 29 12:00:26 CEST 2015 x86_64 GNU/Linux
 
 *Note: Windows (dos) directory has been ~~discontinued~~ removed since I do not use Windows anymore for development at all.
 In the Unix folder you can find my bash config, i3, some dzen/conky stuff and that's about it. There is also an .Xresources file in there.*
