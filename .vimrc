@@ -12,21 +12,22 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
 Plugin 'tomtom/tcomment_vim' " For quickly commenting and uncommenting lines of text
 Plugin 'kien/ctrlp.vim' " No need to say anything about this one
+    Plugin 'tacahiroy/ctrlp-funky' " Some additions to the ctrlp
 Plugin 'scrooloose/nerdtree' " File tree
+    Plugin 'jistr/vim-nerdtree-tabs' " 'Add-on' for NerdTree
 Plugin 'ervandew/supertab' " TAB completion
 Plugin 'bling/vim-airline' " Just eyecandy
-Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
-Plugin 'jistr/vim-nerdtree-tabs' " 'Add-on' for NerdTree
+"Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
 Plugin 'scrooloose/syntastic' " Syntax checker and linter
-Plugin 'tpope/vim-surround' " For more fluent content editing
-Plugin 'tacahiroy/ctrlp-funky' " Some additions to the ctrlp
+"Plugin 'tpope/vim-surround' " For more fluent content editing
 Plugin 'SirVer/ultisnips' " Snippet engine
-Plugin 'honza/vim-snippets' " Snippets generated for the engine
-Plugin 'henrik/vim-indexed-search' " Makes search results more useful
-
+    Plugin 'honza/vim-snippets' " Snippets generated for the engine
+Plugin 'henrik/vim-indexed-search' " Makes search results more useful. No big changes.
+Plugin 'Raimondi/delimitMate' " Automatically add closing brackets, quotes, braces...
+Plugin 'heavenshell/vim-pydocstring' " Generate docstrings for python
+Plugin 'majutsushi/tagbar' " F2 taglist -- sudo pacman -S ctags
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,6 +74,9 @@ set listchars=tab:»·,trail:·
 " Do incremental searches
 set incsearch
 
+" Highlight all search results
+set hlsearch
+
 " Ignore cases
 set ignorecase
 
@@ -104,7 +108,7 @@ set nobk
 set nobomb
 set fileencoding=utf-8
 set encoding=utf-8
-" }}}
+ " }}}
 
 " Status line configuration {{{
 set laststatus=2
@@ -117,51 +121,34 @@ highlight StatusLine ctermfg=black ctermbg=white
 " Make it so we can change the color of the status line depending on the mode we are in.
 au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
 au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
-" }}}
+"  }}}
 
-" Tabs {{{
+"  Tabs and buffers {{{
 " Use CTRL+T to spawn new tab and CTRL+W to destroy. Also movement.
 nmap <C-t> <Esc>:tabnew<CR><Esc>
 nmap <C-w> <Esc>:tabclose<CR><Esc>
 nmap <C-Left> <Esc>:tabp<CR><Esc>
 nmap <C-Right> <Esc>:tabn<CR><Esc>
 
-" Move tabs right and left.
-function TabLeft()
-   let tab_number = tabpagenr() - 1
-   if tab_number == 0
-      execute "tabm" tabpagenr('$') - 1
-   else
-      execute "tabm" tab_number - 1
-   endif
-endfunction
+" Move around buffers.
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+"  }}}
 
-function TabRight()
-   let tab_number = tabpagenr() - 1
-   let last_tab_number = tabpagenr('$') - 1
-   if tab_number == last_tab_number
-      execute "tabm" 0
-   else
-      execute "tabm" tab_number + 1
-   endif
-endfunction
-
-nmap <silent><C-S-Right> :execute TabRight()<CR>
-nmap <silent><C-S-Left> :execute TabLeft()<CR>
-" }}}
-
-" Color scheme {{{
+ " Color scheme {{{
 set background=light
 colorscheme jellybeans
 " }}}
 
-" Misc {{{
+  " Misc {{{
 " I don't like the sound of bells, so I disabled them.
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 " }}}
 
-" Custom keybindings {{{
+"   Custom keybindings {{{
 " Use TAB to indent lines and to unindent
 vnoremap <Tab> >
 vnoremap <S-Tab> <
@@ -193,9 +180,15 @@ vnoremap > >gv
 
 " Use Control+K to remove a line.
 imap <C-k> <Esc>dd<CR><Esc>i
-" }}}
 
-" Plugin specific configuration {{{
+" Make ctrl+c stay on the end of the line
+vnoremap <C-C> "+ygv"<Esc>
+
+" Bind F1 to toggle search result highlighting
+nnoremap <F1> :set hlsearch!<CR>
+ " }}}
+
+ " Plugin specific configuration {{{
 " CTRL-P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
@@ -214,9 +207,21 @@ let g:syntastic_check_on_wq = 1 " This checks for errors on any write
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
+" Nerdtree
 " Bind F3 to open and close NerdTree.
 autocmd VimEnter * nmap <F3> :NERDTreeTabsToggle<CR>
 autocmd VimEnter * imap <F3> <Esc>:NERDTreeTabsToggle<CR>a
 let NERDTreeQuitOnOpen=1
 let NERDTreeWinSize=35
+
+" Taglist
+nmap <F2> :TagbarToggle<CR>
+" Always open tagbar.
+autocmd VimEnter * nested :call tagbar#autoopen(0)
+" Bind p to open the tag in the preview window.
+let g:tagbar_map_previewwin = "p"
+" Bind q to close the tagbar window(s)
+let g:tagbar_map_close = "q"
+" Show linenumbers in the preview window
+let g:tagbar_show_linenumbers = 1
 " }}}
