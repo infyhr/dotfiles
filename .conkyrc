@@ -37,18 +37,22 @@ double_buffer yes
 TEXT
 
 # JSON for i3bar
-#{"full_text": "RAM ${memperc}%", "color":${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} }
 [
-	{"full_text": "${execi 60 /home/infy/.i3/nowplaying.sh}", "short_text": "♩ ♪ ♫", "color":"\#bdc3c7", "separator_block_width": 15, "icon": "/home/infy/dzen2/note.xbm"},
-#	{"full_text": "${execi 1 /home/infy/.i3/i3py.py}", "short_text": "!", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/clock.xbm"},
-	{"full_text": "mail.ru:${execi 1180 /home/infy/.i3/check_email_mail.py} | fesb.hr:${execi 1200 /home/infy/.i3/check_email_skole.py} | gmail.com:${execi 1210 /home/infy/.i3/check_email_gmail.py}", "color":"\#2ecc71", "separator_block_width": 15, "icon": "/home/infy/dzen2/mail.xbm"},
-#	{"full_text": "W: ${wireless_link_qual_perc wlp0s18f2u2}%", "color":${if_match ${wireless_link_qual_perc}<70}"\#c0392b"${else}"\#27ae60"${endif}, "separator_block_width": 15, "short_text": "${wireless_link_qual_perc wlp0s18f2u2}%"},
-    {"full_text": "${execi 10800 curl infy.cybershade.org/ip.php}", "color":"\#c0392b", "icon": "/home/infy/dzen2/net_wired.xbm"},
-	{"full_text": "${execi 1200 /home/infy/.i3/conky_weather.sh}°C", "color":"\#f88017", "separator_block_width": 15, "icon": "/home/infy/dzen2/temp.xbm"},
-	{"full_text": "${exec sensors | grep -n 'temp1' | sed -n 2p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}", "color":"\#2c3e50", "separator_block_width": 15, "icon": "/home/infy/dzen2/cpu.xbm"},
-	{"full_text": "${mem} of ${memmax}", "color":"\#1abc9c", "separator_block_width": 15, "icon": "/home/infy/dzen2/mem.xbm"},
-	{"full_text": "${hddtemp}°C", "color":"\#2980b9", "separator_block_width": 15, "icon": "/home/infy/dzen2/diskette.xbm"},
-	{"full_text": "${execi 120 aticonfig --odgt | tail -n 1 | awk '{print $5}'}°C", "color":"\#16a085", "separator_block_width": 15, "icon": "/home/infy/dzen2/fs_02.xbm"},
-	{"full_text": "${loadavg 1 2}", "color":"\#7f8c8d", "separator_block_width": 15, "icon": "/home/infy/dzen2/info_03.xbm"},
-	{"full_text": "${time %d.%m.%y - %H:%M}", "color":"\#ffffff", "icon": "/home/infy/dzen2/clock.xbm"}
+    {
+        "full_text": "${execi 60 /home/infy/.i3/nowplaying.sh}",
+        "short_text": "♩ ♪ ♫",
+        "color":"\#505050",
+        "separator_block_width": 15,
+        "icon": "/home/infy/dzen2/note.xbm",
+        "separator": false
+    },
+    {"full_text": "${exec sudo ethtool enp2s0 | grep -i 'Speed:' | awk '/[0-9]*/{print $2}'}", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/net_wired.xbm", "separator": false},
+    {"full_text": "bk:${execi 1180 /home/infy/.i3/check_email_mail.py} fesb:${execi 1200 /home/infy/.i3/check_email_skole.py} gmail:${execi 1210 /home/infy/.i3/check_email_gmail.py}", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/mail.xbm", "separator": false},
+    {"full_text": "${execi 1200 /home/infy/.i3/conky_weather.sh}°C", "color":"\#f88017", "separator_block_width": 15, "icon": "/home/infy/dzen2/temp.xbm", "separator": false},
+    {"full_text": "${exec sensors | grep -n 'temp1' | awk -F '+' '{print $2}' | awk -F ' ' '{print $1}' | tail -n 1}", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/cpu.xbm", "separator": false},
+    {"full_text": "${mem}", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/mem.xbm", "separator": false},
+    {"full_text": "${exec sudo hddtemp /dev/sdb | awk '/[0-9]*/{print $4}'}", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/diskette.xbm", "separator": false},
+    {"full_text": "${execi 120 aticonfig --odgt | tail -n 1 | awk '{print $5}'}°C", "color":"\#808080", "separator_block_width": 15, "icon": "/home/infy/dzen2/fs_02.xbm", "separator": false},
+    {"full_text": "${loadavg 1 2}", "color":"\#505050", "separator_block_width": 15, "icon": "/home/infy/dzen2/info_03.xbm", "separator": false},
+    {"full_text": "${time %d.%m.%y - %H:%M}", "color":"\#ffffff", "icon": "/home/infy/dzen2/clock.xbm", "separator": false}
 ],

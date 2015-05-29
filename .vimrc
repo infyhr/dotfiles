@@ -225,3 +225,9 @@ let g:tagbar_map_close = "q"
 " Show linenumbers in the preview window
 let g:tagbar_show_linenumbers = 1
 " }}}
+
+" gVIM specific configuration {{{
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:block-Cursor
+set guicursor+=i:blinkon0
+" }}}
