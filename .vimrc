@@ -1,5 +1,5 @@
 " vim:fdm=marker
-" VIM config 2.0 -- 30.04.2015
+" VIM config 2.1 -- Somewhere after university, in July/August 2015 ... :\
 " from: https://www.github.com/infyhr/dotfiles
 
 " Core {{{
@@ -22,12 +22,14 @@ Plugin 'bling/vim-airline' " Just eyecandy
 "Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
 Plugin 'scrooloose/syntastic' " Syntax checker and linter
 "Plugin 'tpope/vim-surround' " For more fluent content editing
-Plugin 'SirVer/ultisnips' " Snippet engine
-    Plugin 'honza/vim-snippets' " Snippets generated for the engine
+"Plugin 'SirVer/ultisnips' " Snippet engine
+    "Plugin 'honza/vim-snippets' " Snippets generated for the engine
 Plugin 'henrik/vim-indexed-search' " Makes search results more useful. No big changes.
 Plugin 'Raimondi/delimitMate' " Automatically add closing brackets, quotes, braces...
-Plugin 'heavenshell/vim-pydocstring' " Generate docstrings for python
-Plugin 'majutsushi/tagbar' " F2 taglist -- sudo pacman -S ctags
+"Plugin 'heavenshell/vim-pydocstring' " Generate docstrings for python
+Plugin 'majutsushi/tagbar' " F2 taglist -- sudo pacman -S.
+Plugin 'danro/rename.vim' " Allows to rename current file -.-
+Plugin 'jdkanani/vim-material-theme' " Just a color scheme
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -108,6 +110,9 @@ set nobk
 set nobomb
 set fileencoding=utf-8
 set encoding=utf-8
+
+" Automatically change the working directory
+set autochdir
  " }}}
 
 " Status line configuration {{{
@@ -135,6 +140,13 @@ nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+" Add a keybinding to resize the window length
+nmap <silent> <F7> :vertical resize -5<CR>
+nmap <silent> <F8> :vertical resize +5<CR>
+nmap <silent> <F11> :res -5<CR>
+nmap <silent> <F12> :res +5<CR>
+
 "  }}}
 
  " Color scheme {{{
@@ -191,6 +203,11 @@ nnoremap <F1> :set hlsearch!<CR>
  " Plugin specific configuration {{{
 " CTRL-P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" This makes sure that whenever a file is selected with return it will be opened in a new tab rather than replacing the current buffer.
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
 " Syntastic configuration
 set statusline+=%#warningmsg#
@@ -211,8 +228,8 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " Bind F3 to open and close NerdTree.
 autocmd VimEnter * nmap <F3> :NERDTreeTabsToggle<CR>
 autocmd VimEnter * imap <F3> <Esc>:NERDTreeTabsToggle<CR>a
-let NERDTreeQuitOnOpen=1
-let NERDTreeWinSize=35
+let NERDTreeQuitOnOpen=0
+let NERDTreeWinSize=20 " Window width<
 
 " Taglist
 nmap <F2> :TagbarToggle<CR>
@@ -224,10 +241,6 @@ let g:tagbar_map_previewwin = "p"
 let g:tagbar_map_close = "q"
 " Show linenumbers in the preview window
 let g:tagbar_show_linenumbers = 1
-" }}}
-
-" gVIM specific configuration {{{
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:block-Cursor
-set guicursor+=i:blinkon0
+" Make it a little less wide
+let g:tagbar_width = 30
 " }}}

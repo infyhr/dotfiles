@@ -5,13 +5,17 @@ export ZSH=/home/infy/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="fuckingshit"
+ZSH_THEME="fs2"
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="false"
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -45,18 +49,45 @@ CASE_SENSITIVE="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo)
+plugins=(git)
 
-# Bash style tab-completion.
+# User configuration
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 setopt autolist
 unsetopt menucomplete
 zstyle ':completion:::*:default' menu no select
 
-# User configuration
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/lampp/bin:/opt/lampp/bin"
-source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
-# fix path for php
 PATH=$PATH:/opt/lampp/bin
 
 alias wwwstart='sudo /opt/lampp/lampp start'
@@ -69,7 +100,8 @@ alias vncstart='x11vnc -nopw -accept popup:0 -once -viewonly -rfbport 55641'
 alias htdocs='cd /opt/lampp/htdocs'
 alias cmus='cd /media/DATA/Music; /usr/bin/cmus'
 alias untar='tar -xvf'
-alias osu='WINEPREFIX=$HOME/.wineosu pasuspender -- wine osu\!.exe'
+alias youtube-fetch='youtube-dl --abort-on-error --yes-playlist --output "/media/DATA/Music/%(title)s.%(ext)s" --write-thumbnail --extract-audio --audio-format "mp3" --audio-quality 0'
+alias virtualbox-start='sudo modprobe vboxdrv'
 
 # Fix mswin keybindings in vim
 vim()

@@ -6,7 +6,7 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-Xcursor.theme: mac-cursors
+!Xcursor.theme: mac-cursors
 
 URxvt.colorUL: #4682B4
 *background: #000000
@@ -17,10 +17,10 @@ URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
 URxvt*.shading: 10
 
-!URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*font: xft:Bitstream Vera Sans Mono:size=10
-!URxvt*font: xft:termsyn:pixelsize=11
-URxvt*font: -*-termsyn-medium-*-normal-*-12-*-*-*-*-*-*-*
+urxvt*font: xft:Source Code Pro:Semibold:size=10:antialias=true:hinting=true
+!urxvt*font: -*-termsyn-medium-*-normal-*-*-*-*-*-*-*-*-*
+!urxvt*font: -*-termsyn-medium-*-normal-*-12-*-*-*-*-*-*-*
+!urxvt*font: -*-terminus-medium-*-normal-*-12-*-*-*-*-*-iso10646-*
 !URxvt.letterspace: -5
 !URxvt.linespace: -1
 
@@ -124,3 +124,32 @@ URxvt.keysym.M-C-S-Left       : \033[1;8D
 !URxvt.keysym.M-C-S-Page_Down : seen as Rxvt.keysym.S-Page_Down
 URxvt.keysym.M-C-S-Home       : \033[1;8H
 URxvt.keysym.M-C-S-End        : \033[1;8F
+
+
+! XTERM CONFIGURATION
+! utf8
+xterm*locale: true
+xterm*utf8: 1
+xterm*utf8Title: true
+! fix alt key
+xterm*metaSendsEscape: true
+! font stuff
+xterm*faceName: Source Code Pro:Semibold:size=10:antialias=true:hinting=true
+!xterm*faceName: Hack:Regular:size=10:antialias=true:hinting=true
+!xterm*font: -*-termsynu-medium-*-normal-*-12-*-*-*-*-*-iso10646-*
+!xterm*font: -*-terminus-medium-*-normal-*-12-*-*-*-*-*-iso10646-*
+!xterm*faceName: Ricty
+! bells
+xterm*bellIsUrgent: true
+! more UTF-8
+!xterm*scaleHeight: 1.0
+! 多分16bitのシーケンス制御に対応する
+xterm*wideChars: true
+xterm*cjkWidth: true
+! 文字の幅を正しくする機能は不具合が出るのでoff
+Xft*forcePackedFont: false
+xterm*faceNameDoublesize: Ricty
+! フォントのサイズ
+!xterm*faceSize: 9
+! $TERMのシェル変数
+xterm*xtermName: xterm-256color
