@@ -19,6 +19,7 @@ Plugin 'scrooloose/nerdtree' " File tree
     Plugin 'jistr/vim-nerdtree-tabs' " 'Add-on' for NerdTree
 Plugin 'ervandew/supertab' " TAB completion
 Plugin 'bling/vim-airline' " Just eyecandy
+    Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
 Plugin 'scrooloose/syntastic' " Syntax checker and linter
 "Plugin 'tpope/vim-surround' " For more fluent content editing
@@ -30,6 +31,13 @@ Plugin 'Raimondi/delimitMate' " Automatically add closing brackets, quotes, brac
 Plugin 'majutsushi/tagbar' " F2 taglist -- sudo pacman -S.
 Plugin 'danro/rename.vim' " Allows to rename current file -.-
 Plugin 'jdkanani/vim-material-theme' " Just a color scheme
+Plugin 'vim-scripts/Tabmerge' " Allows to merge two tabs into single view.
+
+" Better syntax highlighting
+Plugin 'vim-scripts/SyntaxAttr.vim' " For theme specific configuration
+Plugin 'StanAngeloff/php.vim' " PHP
+Plugin 'hdima/python-syntax' " Python
+Plugin 'octol/vim-cpp-enhanced-highlight' " C++
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,6 +75,9 @@ set number
 
 " Show the cursor position at all time
 set ruler
+
+" I want a visible cursor line all the time!
+set cursorline
 
 " Show visual tab characters. (testing)
 set list
@@ -120,12 +131,12 @@ set laststatus=2
 set statusline=%F%m%r%h%w\ [%l/%L]\ %<[%{&ff}]\%h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\\"}%k\ %-14.(%l,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 
 " Highlighting specific parts of the buffer
-highlight Comment ctermfg=black
-highlight StatusLine ctermfg=black ctermbg=white
+"highlight Comment ctermfg=black
+"highlight StatusLine ctermfg=black ctermbg=white
 
 " Make it so we can change the color of the status line depending on the mode we are in.
-au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
-au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+"au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
+"au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
 "  }}}
 
 "  Tabs and buffers {{{
@@ -137,9 +148,16 @@ nmap <C-Right> <Esc>:tabn<CR><Esc>
 
 " Move around buffers.
 nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-k> :wincmd k<CR>
+
 nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+
 nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+
 nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <A-l> :wincmd l<CR>
 
 " Add a keybinding to resize the window length
 nmap <silent> <F7> :vertical resize -5<CR>
@@ -198,6 +216,12 @@ vnoremap <C-C> "+ygv"<Esc>
 
 " Bind F1 to toggle search result highlighting
 nnoremap <F1> :set hlsearch!<CR>
+
+" Č <=> :
+map č :
+
+" use jj to do ESC
+imap jj <Esc>
  " }}}
 
  " Plugin specific configuration {{{
@@ -208,6 +232,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+
+" airline
+let g:airline_theme='serene'
 
 " Syntastic configuration
 set statusline+=%#warningmsg#
@@ -243,4 +270,7 @@ let g:tagbar_map_close = "q"
 let g:tagbar_show_linenumbers = 1
 " Make it a little less wide
 let g:tagbar_width = 30
+
+" python-syntax
+let python_highlight_all = 1 " Highlight everything you can
 " }}}

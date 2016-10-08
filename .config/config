@@ -29,7 +29,7 @@ client.urgent                   #FF0000 #000000 #FFFFFF
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -88,7 +88,7 @@ bindsym $mod+a focus parent
 # workspace "1: www" output DVI-0
 workspace 1 output DVI-0
 workspace 2 output DVI-0
-workspace 3 output DVI-0
+workspace 3 output DVI-1
 workspace 4 output DVI-0
 workspace 5 output DVI-0
 workspace 6 output DVI-0
@@ -166,15 +166,17 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
     #i3bar_command /usr/bin/i3bar-icons
-    i3bar_command /usr/bin/xfce4-panel -d
-    #status_command $HOME/.i3/conky.sh
-    separator_symbol "    "
+    i3bar_command /usr/bin/i3bar
+    #i3bar_command /usr/bin/xfce4-panel -d
+    status_command $HOME/.config/i3/conky.sh
+    separator_symbol "        "
     tray_output DVI-0
     mode dock
-    position bottom
-    #font pango:Uushi 9px
+    position top
     #font -misc-fixed-medium-r-*--12-110-75-75-c-60-iso10646-1
+    #font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
     output DVI-0
+    output DVI-1
     colors {
         background #000000
         statusline #FFFFFF
@@ -185,58 +187,8 @@ bar {
     }
 }
 
-# Fix keyboard layout
-exec setxkbmap -model pc101 -layout hr,bg -variant ,phonetic -option grp:caps_toggle,grp_led:none
-
-# Nitrogen because I want a desktop background.
-#exec --no-startup-id nitrogen --restore
-exec --no-startup-id xsetroot -solid "#008080"
-
-# redshift as an alternative to f.lux.
-exec --no-startup-id redshift-gtk &
-
-# skype
-exec skype &
-
-# Set keyboard repeat rrrrrrate
-exec xset r rate 250 35
-# No screensaver, no screen turning off and shit
-exec xset -dpms
-exec xset s off
-
-# wireless icon in the tray.
-exec --no-startup-id nm-applet &
-
-# autocutsel and numlockx
-exec numlockx &
-#exec autocutsel -selection PRIMARY -fork &
-
-# Bind $mod and 0 to take a screenshot
-#bindsym Print exec --no-startup-id /home/infy/screenie.py &
-
-# Bind $mod and P to open i3actions.py jump_to
 bindsym $mod+p exec i3actions.py jump_to
-# And $mod+m to show the menu
 bindsym $mod+m exec i3actions.py show_menu
 
-# Fix tablet input area
-exec xinput set-int-prop "Genius EasyPen i405X" "Evdev Axis Calibration" 32 452 5013 658 3810
-
-exec --no-startup-id telegram -startintray &
-
-exec --no-startup-id pasystray &
-
-# CTRL+ALT+BACKSPACE kills Xorg (fuck Firefox)
-exec setxkbmap -option terminate:ctrl_alt_bksp
-
-# Custom keyboard layout
-exec xmodmap /home/infy/.Xmodmap
-
-# Some i3bar transparency
-#exec --no-startup-id compton &
-
-# libnotify daemon
-exec --no-startup-id dunst &
-
-# xfce4-panel for a change
-exec --no-startup-id xfce4-panel &
+# Startup script.
+exec --no-startup-id /home/infy/.config/i3/startup.sh

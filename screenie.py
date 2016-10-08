@@ -12,7 +12,7 @@ def main():
     os.system('import /tmp/%s.png' % (result));
 
     # scp to upload it.
-    os.system('scp -q -P 6996 -i /home/infy/.ssh/electra /tmp/%s.png infy@electra.cybershade.org:/home/infy/www/pub/ekran/%s.png' % (result, result))
+    os.system('scp -q -P 6996 -i /home/infy/.ssh/electra /tmp/%s.png infy@...:/home/infy/www/pub/ekran/%s.png' % (result, result))
 
     # put it in the clipboard.
     p = Popen(['xsel','-pi'], stdin=PIPE)
