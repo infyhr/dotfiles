@@ -1,11 +1,11 @@
 dotfiles
 ========
 My own dotfiles. I use [**Arch Linux**](https://archlinux.org)
-* Linux storm 4.4.1-2-ARCH #1 SMP PREEMPT Wed Feb 3 13:12:33 UTC 2016 x86_64 GNU/Linux
+* `Linux storm 4.7.5-1-ARCH #1 SMP PREEMPT Sat Sep 24 13:04:22 CEST 2016 x86_64 GNU/Linux`
 
 ### Screenshot
 as of 26.02.2015:
-![this is how it looks no](https://raw.githubusercontent.com/infyhr/dotfiles/master/screenshot.png ".")
+![this is how it looks no](https://raw.githubusercontent.com/infyhr/dotfiles/master/screenshot.jpg ".")
 
 ### What's in here
 * vim
@@ -13,7 +13,12 @@ as of 26.02.2015:
 * conky config
 * xorg crap (xresources etc)
 * i3 config
+* gtk config
+* wbar config
+* compton config
 * some scripts
 
-### Installation
-Just clone it into your ~
+### Changelog (as of last push)
+* Switched from systemd to OpenRC
+* Added wbar and compositing to i3
+* 2 monitors (didn't bother taking a ss of the other one)
