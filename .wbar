@@ -1,5 +1,5 @@
 i: /usr/share/pixmaps/wbar/dock.png
-c: wbar --bpress --nofont --pos bot-left --offset 130 --noreload --isize 48 --idist 32 --nanim 3 --zoomf 1.500000 --jumpf 1.000000 --filter 0 --fc 0xff000000
+c: wbar --bpress --nofont --pos bot-left --offset 0 --noreload --isize 48 --idist 32 --nanim 3 --zoomf 1.500000 --jumpf 1.000000 --filter 0 --fc 0xff000000
 t: /usr/share/fonts/TTF/Ubuntu-Regular/16
 
 i: /usr/share/icons/hicolor/256x256/apps/firefox.png
