@@ -1,17 +1,17 @@
 dotfiles
 ========
 My own dotfiles. I use [**Arch Linux**](https://archlinux.org)
-* `Linux storm 4.7.5-1-ARCH #1 SMP PREEMPT Sat Sep 24 13:04:22 CEST 2016 x86_64 GNU/Linux`
+* Linux storm 4.9.8-1-ARCH #1 SMP PREEMPT Mon Feb 6 12:59:40 CET 2017 x86_64 GNU/Linux
 
 ### Screenshot
-as of 8.10.2016:
+as of Sat Feb 18 19:53:01 CET 2017:
 ![this is how it looks no](https://raw.githubusercontent.com/infyhr/dotfiles/master/screenshot.jpg ".")
 
 ### What's in here
 * vim
 * zsh
 * conky config
-* xorg crap (xresources etc)
+* xorg (xresources etc)
 * i3 config
 * gtk config
 * wbar config
@@ -19,6 +19,5 @@ as of 8.10.2016:
 * some scripts
 
 ### Changelog (as of last push)
-* Switched from systemd to OpenRC
-* Added wbar and compositing to i3
-* 2 monitors (didn't bother taking a ss of the other one)
+* Moved to i3blocks from conky
+* New color scheme! Looks MacOS-ish
