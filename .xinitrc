@@ -1,4 +1,4 @@
-xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/termsyn
 xset fp rehash
 
 xrdb -merge /home/infy/.Xresources

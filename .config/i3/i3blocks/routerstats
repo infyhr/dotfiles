@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from bs4 import BeautifulSoup
+import requests
+from requests.auth import HTTPBasicAuth
+import re
+import os
+
+def main():
+    response = requests.get('http://192.168.0.1/RgConnect.asp', auth=HTTPBasicAuth('', 'admin'))
+    #downstrema snr: <td align="right">\s?(\d{1,2}\.\d) dB<\/td>
+    #downstream power: <td align="right">\s?(\d{1,2}\.\d) dBmV<\/td><t
+    #upstream power: <td align="right">\s?(\d{1,2}\.\d) dBmV<\/td><\/
+    dsSnr  = re.findall(r'<td align="right">(\d{1,2}\.\d) dB<\/td>', response.text)
+    dsPwr  = re.findall(r'<td align="right">?(\d{1,2}\.\d) dBmV<\/td><t', response.text)
+    usPwr  = re.findall(r'<td align="right">?(\d{1,2}\.\d) dBmV<\/td><\/', response.text)
+
+    # Convert all to floats
+    f_dsSnr = list(map(float, dsSnr))
+    f_dsPwr = list(map(float, dsPwr))
+    f_usPwr = list(map(float, usPwr))
+
+    # Find the averages
+    dsSnrAvg = sum(f_dsSnr) / float(len(f_dsSnr))
+    dsPwrAvg = sum(f_dsPwr) / float(len(f_dsPwr))
+
+    # No block button, print out nicely the SnR
+    if(os.environ['BLOCK_BUTTON'] == ''):
+        print("%.2f dB  %.2f dBmV" % (round(dsSnrAvg, 2), round(dsPwrAvg, 2)))
+        return
+
+    # If we left click, then print out everything
+    if(os.environ['BLOCK_BUTTON'] == '1'):
+        print(' '.join(dsSnr))
+    elif(os.environ['BLOCK_BUTTON'] == '3'): # Show downstream power levels
+        print(' '.join(dsPwr))
+    else: # Must be the second click
+        print(' '.join(usPwr))
+
+if __name__=='__main__':
+    main()

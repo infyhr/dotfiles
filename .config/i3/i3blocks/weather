@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DATA=$(curl --silent "pljusak.com/sticker150.php?stanica=fesb" | grep -Po '<td class="fav_l150">([0-9]{1,2}\.[0-9])°<\/td>' | cut -c22-24)
+
+if (( $(echo "$DATA < 10" | bc -l) )); then
+    echo "<span foreground=\"#8e44ad\">$DATA°C</span>"
+elif (( $(echo "$DATA < 20" | bc -l) )); then
+    echo "<span foreground=\"#2980b9\">$DATA°C</span>"
+elif (( $(echo "$DATA < 30" | bc -l) )); then
+    echo "<span foreground=\"#27ae60\">$DATA°C</span>"
+else
+    echo "<span foreground=\"#e74c3c\">$DATA°C</span>"
+fi

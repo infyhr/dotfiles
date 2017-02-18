@@ -4,7 +4,8 @@ set background=dark
 colorscheme cbble
 
 " Set the font
-set guifont=Source\ Code\ Pro\ Semi-Bold\ 10.6
+"set guifont="Source\ Code\ Pro\ Semi-Bold\ 10.6"
+set guifont=Source\ Code\ Pro\ Semi\-Bold\ 11
 
 " Remove unneeded GUI elements
 set guioptions-=T  " remove toolbar

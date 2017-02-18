@@ -1,10 +1,14 @@
-i: /usr/share/pixmaps/wbar/dock.png
-c: wbar --bpress --nofont --pos bot-left --offset 0 --noreload --isize 48 --idist 32 --nanim 3 --zoomf 1.500000 --jumpf 1.000000 --filter 0 --fc 0xff000000
+i: /home/infy/Downloads/FFFFFF-0.png
+c: wbar --bpress --nofont --pos bot-left --offset 130 --noreload --isize 48 --idist 32 --nanim 3 --zoomf 1.500000 --jumpf 1.000000 --filter 0 --fc 0xff000000
 t: /usr/share/fonts/TTF/Ubuntu-Regular/16
 
 i: /usr/share/icons/hicolor/256x256/apps/firefox.png
 c: firefox
 t: Firefox
+
+i: /home/infy/Pictures/icons/Chromium_Material_Icon-256x256.png
+c: chromium
+t: Chromium
 
 i: /usr/share/pixmaps/wbar/wbar.png
 c: wbar-config
@@ -25,4 +29,8 @@ t: gVim
 i: /home/infy/Pictures/icons/Task_Manager.png
 c: xfce4-taskmanager
 t: Task Manager
+
+i: /opt/sublime_text_3/Icon/256x256/sublime-text.png
+c: sublime_text
+t: Sublime Text 3
 

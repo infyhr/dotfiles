@@ -4,7 +4,7 @@
 setxkbmap -model pc101 -layout hr,bg -variant ,phonetic -option grp:caps_toggle,grp_led:none
 
 # Fix screen
-xrandr --output DisplayPort-0 --off --output DVI-1 --mode 1280x1024 --pos 1440x0 --rotate normal --output DVI-0 --primary --mode 1440x900 --pos 0x124 --rotate normal --output HDMI-0 --off
+xrandr --output DisplayPort-0 --off --output DVI-1 --mode 1280x1024 --pos 1440x0 --rotate normal --output DVI-0 --primary --mode 1440x900 --pos 0x0 --rotate normal --output HDMI-0 --off
 
 # xfce4-panel
 #xfce4-panel &
@@ -53,7 +53,7 @@ xinput set-int-prop "Genius EasyPen i405X" "Evdev Axis Calibration" 32 452 5013 
 
 #sleep 5
 
-pasystray &
+#pasystray &
 
 # CTRL+ALT+BACKSPACE kills Xorg (fuck Firefox)
 setxkbmap -option terminate:ctrl_alt_bksp
