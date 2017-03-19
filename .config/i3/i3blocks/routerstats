@@ -13,7 +13,8 @@ def main():
     #downstream power: <td align="right">\s?(\d{1,2}\.\d) dBmV<\/td><t
     #upstream power: <td align="right">\s?(\d{1,2}\.\d) dBmV<\/td><\/
     dsSnr  = re.findall(r'<td align="right">(\d{1,2}\.\d) dB<\/td>', response.text)
-    dsPwr  = re.findall(r'<td align="right">?(\d{1,2}\.\d) dBmV<\/td><t', response.text)
+    #dsPwr  = re.findall(r'<td align="right">?(\d{1,2}\.\d) dBmV<\/td><t', response.text)
+    dsPwr  = re.findall(r'&nbsp;<\/td><td align="right">\s?(\d{1,2}\.\d) dBmV<\/td><t', response.text)
     usPwr  = re.findall(r'<td align="right">?(\d{1,2}\.\d) dBmV<\/td><\/', response.text)
 
     # Convert all to floats
