@@ -55,3 +55,6 @@ diego@diego-thinkpad:~$
 
 # Had the same problem. It gone when changed root property in automount section to /mnt/ (from just /).
 ```
+
+#### What to install within linux userspace
+* node VIA nvm!
