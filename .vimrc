@@ -1,49 +1,10 @@
 " vim:fdm=marker
-" VIM config 2.1 -- Somewhere after university, in July/August 2015 ... :\
-" from: https://www.github.com/infyhr/dotfiles
+" VIM config 3.0 -- Somewhere after graduating universit and being employed after a freaking year, September 2020 :(
+" from: https://www.github.com/tobe/dotfiles
 
 " Core {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tomtom/tcomment_vim' " For quickly commenting and uncommenting lines of text
-Plugin 'kien/ctrlp.vim' " No need to say anything about this one
-    Plugin 'tacahiroy/ctrlp-funky' " Some additions to the ctrlp
-Plugin 'scrooloose/nerdtree' " File tree
-    Plugin 'jistr/vim-nerdtree-tabs' " 'Add-on' for NerdTree
-Plugin 'ervandew/supertab' " TAB completion
-Plugin 'bling/vim-airline' " Just eyecandy
-    Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'terryma/vim-multiple-cursors' " Can't live without this one
-Plugin 'scrooloose/syntastic' " Syntax checker and linter
-"Plugin 'tpope/vim-surround' " For more fluent content editing
-"Plugin 'SirVer/ultisnips' " Snippet engine
-    "Plugin 'honza/vim-snippets' " Snippets generated for the engine
-Plugin 'henrik/vim-indexed-search' " Makes search results more useful. No big changes.
-Plugin 'Raimondi/delimitMate' " Automatically add closing brackets, quotes, braces...
-"Plugin 'heavenshell/vim-pydocstring' " Generate docstrings for python
-Plugin 'majutsushi/tagbar' " F2 taglist -- sudo pacman -S.
-Plugin 'danro/rename.vim' " Allows to rename current file -.-
-Plugin 'jdkanani/vim-material-theme' " Just a color scheme
-Plugin 'vim-scripts/Tabmerge' " Allows to merge two tabs into single view.
-
-" Better syntax highlighting
-Plugin 'vim-scripts/SyntaxAttr.vim' " For theme specific configuration
-Plugin 'StanAngeloff/php.vim' " PHP
-Plugin 'hdima/python-syntax' " Python
-Plugin 'octol/vim-cpp-enhanced-highlight' " C++
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
 " Behave mswin for me
 source $VIMRUNTIME/mswin.vim
@@ -111,9 +72,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=oi
 " No swap.
 set noswapfile
 
-" ff=unix
-set ff=unix
-
 " No need for backups.
 set nobk
 
@@ -135,41 +93,21 @@ set statusline=%F%m%r%h%w\ [%l/%L]\ %<[%{&ff}]\%h%m%r%=%{\"[\".(&fenc==\"\"?&enc
 "highlight StatusLine ctermfg=black ctermbg=white
 
 " Make it so we can change the color of the status line depending on the mode we are in.
-"au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
-"au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=bold guisp=Red
+au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
 "  }}}
 
 "  Tabs and buffers {{{
 " Use CTRL+T to spawn new tab and CTRL+W to destroy. Also movement.
 nmap <C-t> <Esc>:tabnew<CR><Esc>
 nmap <C-w> <Esc>:tabclose<CR><Esc>
-nmap <C-Left> <Esc>:tabp<CR><Esc>
-nmap <C-Right> <Esc>:tabn<CR><Esc>
-
-" Move around buffers.
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-k> :wincmd k<CR>
-
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-h> :wincmd h<CR>
-
-nmap <silent> <A-Right> :wincmd l<CR>
-nmap <silent> <A-l> :wincmd l<CR>
-
-" Add a keybinding to resize the window length
-nmap <silent> <F7> :vertical resize -5<CR>
-nmap <silent> <F8> :vertical resize +5<CR>
-nmap <silent> <F11> :res -5<CR>
-nmap <silent> <F12> :res +5<CR>
-
+nmap <A-Left> <Esc>:tabp<CR><Esc>
+nmap <A-Right> <Esc>:tabn<CR><Esc>
 "  }}}
 
  " Color scheme {{{
 set background=light
-colorscheme jellybeans
+colorscheme ron
 " }}}
 
   " Misc {{{
@@ -195,9 +133,6 @@ imap <silent> <Home> <C-O><Home>
 " Use F9 to toggle between visible whitespace
 nnoremap <F9> :set list!<CR>
 
-" Map cw to change inner word. I tend to mix these up quite often.
-nmap cw ciw
-
 " This makes sure when I'm searching that it searches in the middle of the screen so I don't have to bounce around with my eyes.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -207,12 +142,6 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 vnoremap < <gv
 vnoremap > >gv
-
-" Use Control+K to remove a line.
-imap <C-k> <Esc>dd<CR><Esc>i
-
-" Make ctrl+c stay on the end of the line
-vnoremap <C-C> "+ygv"<Esc>
 
 " Bind F1 to toggle search result highlighting
 nnoremap <F1> :set hlsearch!<CR>
@@ -224,53 +153,5 @@ map č :
 imap jj <Esc>
  " }}}
 
- " Plugin specific configuration {{{
-" CTRL-P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" This makes sure that whenever a file is selected with return it will be opened in a new tab rather than replacing the current buffer.
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
-
-" airline
-let g:airline_theme='serene'
-
-" Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 0 " Disable the window
-let g:syntastic_auto_loc_list = 0 " This also disables the syntax checking window
-let g:syntastic_check_on_open = 0 " Disable error checking on open
-let g:syntastic_check_on_wq = 1 " This checks for errors on any write
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-
-" ctrlp-funky
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
-" Nerdtree
-" Bind F3 to open and close NerdTree.
-autocmd VimEnter * nmap <F3> :NERDTreeTabsToggle<CR>
-autocmd VimEnter * imap <F3> <Esc>:NERDTreeTabsToggle<CR>a
-let NERDTreeQuitOnOpen=0
-let NERDTreeWinSize=20 " Window width<
-
-" Taglist
-nmap <F2> :TagbarToggle<CR>
-" Always open tagbar.
-autocmd VimEnter * nested :call tagbar#autoopen(0)
-" Bind p to open the tag in the preview window.
-let g:tagbar_map_previewwin = "p"
-" Bind q to close the tagbar window(s)
-let g:tagbar_map_close = "q"
-" Show linenumbers in the preview window
-let g:tagbar_show_linenumbers = 1
-" Make it a little less wide
-let g:tagbar_width = 30
-
-" python-syntax
-let python_highlight_all = 1 " Highlight everything you can
-" }}}
+" vim starts in REPLACE for wsl fix
+set t_u7=

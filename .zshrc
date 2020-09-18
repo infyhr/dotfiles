@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/infy/.oh-my-zsh
+export ZSH=/root/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,9 +53,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -87,21 +84,11 @@ setopt autolist
 unsetopt menucomplete
 zstyle ':completion:::*:default' menu no select
 
-export EDITOR='vim'
-PATH=$PATH:/opt/lampp/bin
-
-alias wwwstart='sudo /opt/lampp/lampp start'
-alias wwwstop='sudo /opt/lampp/lampp stop'
-alias lag2='ping webmail.carnet.hr'
-alias lag='ping 172.29.33.225' # NEW!
-alias DATA='cd /media/DATA'
-alias router='ping 192.168.1.1'
-alias vncstart='x11vnc -nopw -accept popup:0 -once -viewonly -rfbport 55641'
-alias htdocs='cd /opt/lampp/htdocs'
-alias cmus='cd /media/DATA/Music; /usr/bin/cmus'
-alias untar='tar -xvf'
-alias youtube-fetch='youtube-dl --abort-on-error --yes-playlist --output "/media/DATA/Music/%(title)s.%(ext)s" --write-thumbnail --extract-audio --audio-format "mp3" --audio-quality 0'
-alias virtualbox-start='sudo modprobe vboxdrv'
+alias alvaro='cd /mnt/g/alvaro'
+alias git='git.exe'
+alias ssh='ssh.exe'
+alias notepad='notepad.exe'
+alias explorer='explorer.exe'
 
 # Fix mswin keybindings in vim
 vim()
