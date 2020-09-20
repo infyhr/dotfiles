@@ -107,7 +107,7 @@ nmap <A-Right> <Esc>:tabn<CR><Esc>
 
  " Color scheme {{{
 set background=light
-colorscheme ron
+colorscheme torte
 " }}}
 
   " Misc {{{
@@ -132,10 +132,6 @@ imap <silent> <Home> <C-O><Home>
 
 " Use F9 to toggle between visible whitespace
 nnoremap <F9> :set list!<CR>
-
-" This makes sure when I'm searching that it searches in the middle of the screen so I don't have to bounce around with my eyes.
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 " Fix indendation with after the select has been moved from key and mousemode!
 vnoremap <Tab> >gv

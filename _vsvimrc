@@ -1,0 +1,12 @@
+" VSVIM specific configuration
+behave mswin
+
+" Un-\Ident in Normal mode with Shift\Tab
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+" Un-\Ident in Insert mode with Shift\Tab
+inoremap <Tab> <C-t>
+inoremap <S-Tab> <C-d>
+" Un-\Ident in Visual mode with Shift\Tab
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
