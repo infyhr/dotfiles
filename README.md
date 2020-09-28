@@ -57,4 +57,9 @@ diego@diego-thinkpad:~$
 ```
 
 #### What to install within linux userspace
+* update (-Syyuu)
+* install and setup zsh + oh-my-zsh
+* git, ssh
+* npm
 * node VIA nvm!
+* after everything is done, alias git to git.exe, that's all folks
