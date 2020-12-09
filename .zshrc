@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -84,9 +84,11 @@ setopt autolist
 unsetopt menucomplete
 zstyle ':completion:::*:default' menu no select
 
-alias alvaro='cd /mnt/g/alvaro'
+
+alias alvaro='cd /g/alvaro'
+alias lms='cd /c/Projects/lms'
 alias git='git.exe'
-alias ssh='ssh.exe'
+#alias ssh='ssh.exe'
 alias notepad='notepad.exe'
 alias explorer='explorer.exe'
 
@@ -103,3 +105,33 @@ vim()
 
 # zsh
 vim() STTY=-ixon command vim "$@"
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+export NVM_DIR="$HOME/.nvm"
+# Default node version
+alias node="$HOME/.nvm/versions/node/v10.16.0/bin/node"
+# Function to load the original nvm and execute it
+load_and_exec_nvm(){
+        unalias node
+        unalias nvm
+        echo "Loading NVM..."
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        echo "Executing NVM..."
+        nvm $@
+}
+# Default nvm, the wrapper to load it and execute it
+alias nvm="load_and_exec_nvm"
+
+# Let's not use ohmyzsh.?
+autoload -U colors && colors
+autoload -U compinit && compinit
+PS1="%{$fg[magenta]%}%n@%m %{$reset_color%}%~ %{$fg[magenta]%}$%{$reset_color%} "
+alias ls='ls --color'
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
